@@ -1,5 +1,6 @@
 import csv
 import sys
+import re
 
 class Account:
     def __init__(self):
@@ -56,7 +57,7 @@ class Account:
 
 
     def sign_up(self):
-        user_id_number = self.get_user_id_number
+        user_id_number = self.get_user_id_number()
 
 
     def get_user_id_number(self):
