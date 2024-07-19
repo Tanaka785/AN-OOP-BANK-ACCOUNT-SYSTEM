@@ -11,13 +11,14 @@ class Account:
             3: "Exit",
         }
 
+
     def sign_up_or_sign_in(self):
         while True:
             self.print_signing_in_or_up_options()
-            self.option = self.get_signing_in_or_up_option()
-            if (self.option) == 1:
+            signing_option = int(self.get_signing_in_or_up_option())
+            if (signing_option) == 1:
                 self.sign_up()
-            elif (self.option) == 2:
+            elif (signing_option) == 2:
                 self.sign_in()
             else:
                 self.quit_program()
@@ -33,20 +34,20 @@ class Account:
 
     def get_signing_in_or_up_option(self):
         while True:
-            self.option = input("CHOOSE OPTION: ").strip()
-            if (self.validate_signing_in_or_up_option(self.option)):
-                return (self.option)
+            signing_option = input("CHOOSE OPTION: ").strip()
+            if (self.validate_signing_in_or_up_option(signing_option)):
+                return (signing_option)
     
 
-    def validate_signing_in_or_up_option(self, option):
-        if (self.option):
+    def validate_signing_in_or_up_option(self, signing_option):
+        if (signing_option):
             try:
-                self.option = int(self.option)
+                signing_option = int(signing_option)
             except ValueError:
                 print("Please Enter An Integer Value For The Option!")
                 self.sign_up_or_sign_in()
             else:
-                if (self.option) in (self.signing_in_or_up_options):
+                if (signing_option) in (self.signing_in_or_up_options):
                     return True
                 else:
                     print("Please Choose An Option that Is Among The Provided Options!")
