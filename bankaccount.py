@@ -68,7 +68,7 @@ class Account:
         while True:
             user_fullname = input("Full Name: ").strip()
             if self.validate_user_fullname(user_fullname):
-                return (user_fullname)
+                return (user_fullname.title())
             
     
     def validate_user_fullname(self, user_fullname):
@@ -90,7 +90,11 @@ class Account:
 
     def validate_user_phone_number(self, user_phone_number):
         if user_phone_number:
-            ...
+            if re.search(r"^(\d{10})$", user_phone_number):
+                return True
+            else:
+                print("Please Enter A Valid Phone Number!")
+                return False 
         else:
             self.print_null_value_error()
 
