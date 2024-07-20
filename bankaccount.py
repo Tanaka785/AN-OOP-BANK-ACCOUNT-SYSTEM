@@ -70,7 +70,7 @@ class Account:
 
     def validate_user_id_number(self, user_id_number):
         if user_id_number:
-            ...
+            print("YES")
         else:
             print("Come on now 😌. Please Enter Something")
 
