@@ -70,7 +70,11 @@ class Account:
 
     def validate_user_id_number(self, user_id_number):
         if user_id_number:
-            print("YES")
+            if re.search(r"^(\d{2})-(\d{7})([A-Z]{1})(\d{2})$", user_id_number):
+                return True 
+            else:
+                print("Please Enter A Valid Id-Number!")
+                return False 
         else:
             print("Come on now 😌. Please Enter Something")
 
