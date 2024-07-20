@@ -71,9 +71,10 @@ class Account:
     
     def validate_user_fullname(self, user_fullname):
         if user_fullname:
-            if re.search(r"^([A-Za-z]*)(\s[A-Za-z]*)*$", user_fullname):
+            if re.search(r"^([A-Za-z]+)(\s[A-Za-z]+)+$", user_fullname):
                 return True
             else:
+                print("Please Enter Your Fullname!")
                 return False
         else:
             self.print_null_error()
