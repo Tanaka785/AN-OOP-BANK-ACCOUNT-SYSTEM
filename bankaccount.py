@@ -75,7 +75,7 @@ class Account:
         else:
             self.print_null_error()
 
-            
+
     def get_user_id_number(self):
         while True:
             user_id_number = input("ID Number: ").strip()
