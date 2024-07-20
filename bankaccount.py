@@ -53,13 +53,15 @@ class Account:
                     print("Please Choose An Option that Is Among The Provided Options!")
                     self.sign_up_or_sign_in()
         else:
-            self.print_null_error()
+            self.print_null_value_error()
             self.sign_up_or_sign_in()
 
 
     def sign_up(self):
         user_fullname = self.get_user_fullname()
+        user_phone_number = self.get_user_phone_number()
         user_id_number = self.get_user_id_number()
+        
 
     
     def get_user_fullname(self):
@@ -77,9 +79,22 @@ class Account:
                 print("Please Enter Your Fullname!")
                 return False
         else:
-            self.print_null_error()
+            self.print_null_value_error()
 
 
+    def get_user_phone_number(self):
+        user_phone_number = input("Phone Number: ")
+        if self.validate_user_phone_number(user_phone_number):
+            return (user_phone_number)
+        
+
+    def validate_user_phone_number(self, user_phone_number):
+        if user_phone_number:
+            ...
+        else:
+            self.print_null_value_error()
+
+            
     def get_user_id_number(self):
         while True:
             user_id_number = input("ID Number: ").strip()
@@ -95,10 +110,10 @@ class Account:
                 print("Please Enter A Valid Id-Number!")
                 return False 
         else:
-            self.print_null_error()
+            self.print_null_value_error()
 
 
-    def print_null_error(self):
+    def print_null_value_error(self):
         print("Come on now 😌. Please Enter Something")
 
         
