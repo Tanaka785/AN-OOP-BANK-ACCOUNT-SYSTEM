@@ -83,9 +83,10 @@ class Account:
 
 
     def get_user_phone_number(self):
-        user_phone_number = input("Phone Number: ")
-        if self.validate_user_phone_number(user_phone_number):
-            return (user_phone_number)
+        while True:
+            user_phone_number = input("Phone Number: ")
+            if self.validate_user_phone_number(user_phone_number):
+                return (user_phone_number)
         
 
     def validate_user_phone_number(self, user_phone_number):
