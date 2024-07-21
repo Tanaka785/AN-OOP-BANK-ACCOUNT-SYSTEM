@@ -10,11 +10,17 @@ class Account:
             2: "Sign In",
             3: "Exit",
         }
+        self.bank_accounts = {
+            1: "Savings Account",
+            2: "Checkings Account",
+            3: "Credit Account",
+            4: "Quit",
+        }
 
 
     def sign_up_or_sign_in(self):
         while True:
-            self.print_signing_in_or_up_options()
+            self.print_options(self.signing_in_or_up_options)
             signing_option = int(self.get_signing_in_or_up_option())
             if (signing_option) == 1:
                 self.sign_up()
@@ -24,36 +30,42 @@ class Account:
                 self.quit_program()
 
 
-    def print_signing_in_or_up_options(self):
+    def print_options(self, options):
         print()
-        print("Account Options:", "\n")
-        for option in (self.signing_in_or_up_options):
-            print(f"{option}. {self.signing_in_or_up_options[option]}")
+        for option in (options):
+            print(f"{option}. {options[option]}")
         print()
 
 
     def get_signing_in_or_up_option(self):
         while True:
             signing_option = input("CHOOSE OPTION: ").strip()
-            if (self.validate_signing_in_or_up_option(signing_option)):
+            if (self.validate_sign_up_or_in_option(signing_option, self.signing_in_or_up_options)):
                 return (signing_option)
     
 
-    def validate_signing_in_or_up_option(self, signing_option):
+    def validate_options(self, signing_option, options):
         if (signing_option):
             try:
                 signing_option = int(signing_option)
             except ValueError:
                 print("Please Enter An Integer Value For The Option!")
-                self.sign_up_or_sign_in()
+                return False 
             else:
-                if (signing_option) in (self.signing_in_or_up_options):
+                if (signing_option) in (options):
                     return True
                 else:
                     print("Please Choose An Option that Is Among The Provided Options!")
-                    self.sign_up_or_sign_in()
+                    return False 
         else:
             self.print_null_value_error()
+            return False 
+
+
+    def validate_sign_up_or_in_option(self, signing_option, options):
+        if self.validate_options(signing_option, options):
+            return True
+        else:
             self.sign_up_or_sign_in()
 
 
@@ -120,13 +132,18 @@ class Account:
 
     def get_account_to_create(self):
         while True:
+            self.print_options(self.bank_accounts)
             account_to_create = input("Which Account Do You Want To Create: ")
-            if self.validate_account_to_create(account_to_create):
+            if self.validate_account_to_create(account_to_create, self.bank_accounts):
                 return (account_to_create)
         
 
-    def validate_account_to_create(self, account_to_create):
-        ...
+    def validate_account_to_create(self, account_to_create, options):
+        if self.validate_options(account_to_create, options):
+            return True
+        else:
+            self.get_account_to_create()
+
 
     def print_null_value_error(self):
         print("Come on now 😌. Please Enter Something")
