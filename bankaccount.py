@@ -19,15 +19,14 @@ class Account:
 
 
     def sign_up_or_sign_in(self):
-        while True:
-            self.print_options(self.signing_in_or_up_options)
-            signing_option = int(self.get_signing_in_or_up_option())
-            if (signing_option) == 1:
-                self.sign_up()
-            elif (signing_option) == 2:
-                self.sign_in()
-            else:
-                self.quit_program()
+        self.print_options(self.signing_in_or_up_options)
+        signing_option = int(self.get_signing_in_or_up_option())
+        if (signing_option) == 1:
+            self.sign_up()
+        elif (signing_option) == 2:
+            self.sign_in()
+        else:
+            self.quit_program()
 
 
     def print_options(self, options):
@@ -133,9 +132,10 @@ class Account:
     def get_account_to_create(self):
         while True:
             self.print_options(self.bank_accounts)
-            account_to_create = input("Which Account Do You Want To Create: ")
+            account_to_create:int = input("Which Account Do You Want To Create: ")
             if self.validate_account_to_create(account_to_create, self.bank_accounts):
-                return (account_to_create)
+                account_to_create = int(account_to_create)
+                return (self.bank_accounts[account_to_create])
         
 
     def validate_account_to_create(self, account_to_create, options):
