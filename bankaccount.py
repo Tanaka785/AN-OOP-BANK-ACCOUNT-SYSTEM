@@ -61,7 +61,7 @@ class Account:
         user_fullname = self.get_user_fullname()
         user_phone_number = self.get_user_phone_number()
         user_id_number = self.get_user_id_number()
-        
+        account_to_create = self.get_account_to_create()
 
     
     def get_user_fullname(self):
@@ -117,6 +117,16 @@ class Account:
         else:
             self.print_null_value_error()
 
+
+    def get_account_to_create(self):
+        while True:
+            account_to_create = input("Which Account Do You Want To Create: ")
+            if self.validate_account_to_create(account_to_create):
+                return (account_to_create)
+        
+
+    def validate_account_to_create(self, account_to_create):
+        ...
 
     def print_null_value_error(self):
         print("Come on now 😌. Please Enter Something")
