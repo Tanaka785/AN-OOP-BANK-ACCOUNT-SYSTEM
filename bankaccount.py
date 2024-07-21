@@ -82,7 +82,7 @@ class Account:
         print(f"You have successfully created a {account_to_create} account \n")
         print("->Your Phone Number Is Your Account Number")
         print("->Your Id-Number Is Your Password")
-        
+
 
     def get_user_fullname(self):
         while True:
@@ -167,6 +167,12 @@ class Account:
                 "Phone Number": phone_number,
                 "Id Number": id_number,
                 "Account Name": account_name,
+            })
+        with open("bank_accounts.csv", "a") as file:
+            writer = csv.DictWriter(file, fieldnames=["Account Number", "Password"])
+            writer.writerow({
+                "Account Number": phone_number,
+                "Password": id_number,
             })
 
 
