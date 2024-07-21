@@ -73,8 +73,17 @@ class Account:
         user_phone_number = self.get_user_phone_number()
         user_id_number = self.get_user_id_number()
         account_to_create = self.get_account_to_create()
+        self.save_sign_up_details(
+            user_fullname,
+            user_phone_number,
+            user_id_number,
+            account_to_create,
+        )
+        print(f"You have successfully created a {account_to_create} account \n")
+        print("->Your Phone Number Is Your Account Number")
+        print("->Your Id-Number Is Your Password")
+        
 
-    
     def get_user_fullname(self):
         while True:
             user_fullname = input("Full Name: ").strip()
@@ -143,6 +152,22 @@ class Account:
             return True
         else:
             self.get_account_to_create()
+
+
+    def save_sign_up_details(self, fullname, phone_number, id_number, account_name):
+        with open("bank_accounts_details.csv", "a") as file:
+            writer = csv.DictWriter(file, fieldnames=[
+                "Full Name",
+                "Phone Number",
+                "Id Number",
+                "Account Name"
+                ])
+            writer.writerow({
+                "Full Name": fullname, 
+                "Phone Number": phone_number,
+                "Id Number": id_number,
+                "Account Name": account_name,
+            })
 
 
     def print_null_value_error(self):
