@@ -124,12 +124,12 @@ class Account:
         while True:
             user_id_number = input(f"{id_number_or_password}: ").strip()
             if self.validate_user_id_number(user_id_number, id_number_or_password):
-                return user_id_number
+                return (user_id_number.upper())
 
 
     def validate_user_id_number(self, user_id_number, id_number_or_password):
         if user_id_number:
-            if re.search(r"^(\d{2})-(\d{7})([A-Z]{1})(\d{2})$", user_id_number):
+            if re.search(r"^(\d{2})-(\d{7})([A-Za-z]{1})(\d{2})$", user_id_number):
                 return True 
             else:
                 print(f"Please Enter A Valid {id_number_or_password}!")
@@ -183,6 +183,29 @@ class Account:
     def sign_in(self):
        account_number = self.get_user_phone_number("Account Number")
        password = self.get_user_id_number("Password")
+       account_details = self.get_account_details()
+       if self.compare_sign_in_details(account_number, password, account_details):
+           print("Sign In Successful🤩")
+       else:
+           print("Account Details Provided Are Invalid! Try Again...")
+           self.sign_in()
+
+
+    def compare_sign_in_details(self, account_number, password, account_details):
+        for account in account_details:
+            if (account["Account Number"] == account_number and account["Password"] == password):
+                return True
+            else:
+                return False
+            
+
+    def get_account_details(self):
+        account_details = list()
+        with open("bank_accounts.csv") as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                account_details.append({"Account Number": row["Account Number"], "Password": row["Password"]})
+        return (account_details)
 
 
     def quit_program(self):
