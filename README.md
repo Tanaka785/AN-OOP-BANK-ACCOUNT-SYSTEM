@@ -4,7 +4,9 @@
 
 1. Create accounts (Savings, Checking, or Credit)
 
-2. Deposit and withdraw money
+2. Deposit Money
+
+3. Withdraw money
 
 3. Check account balances
 

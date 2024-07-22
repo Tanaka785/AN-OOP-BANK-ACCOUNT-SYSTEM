@@ -16,6 +16,13 @@ class Account:
             3: "Credit Account",
             4: "Quit",
         }
+        self.system_options = {
+            1: "Deposit Money",
+            2: "Withdraw Money",
+            3: "Check Account Balances",
+            4: "Transfer Money between Accounts",
+            5: "Generate Account statements",
+        }
 
 
     def sign_up_or_sign_in(self):
@@ -81,7 +88,8 @@ class Account:
         )
         print(f"You have successfully created a {account_to_create} \n")
         print("->Your Phone Number Is Your Account Number")
-        print("->Your Id-Number Is Your Password")
+        print(f"->Your Id-Number Is Your Password \n")
+        self.system_options()
 
 
     def get_user_fullname(self):
@@ -186,6 +194,7 @@ class Account:
        account_details = self.get_account_details()
        if self.compare_sign_in_details(account_number, password, account_details):
            print("Sign In Successful🤩")
+           self.system_options()
        else:
            print("Account Details Provided Are Invalid! Try Again...")
            self.sign_in()
@@ -206,6 +215,9 @@ class Account:
             for row in reader:
                 account_details.append({"Account Number": row["Account Number"], "Password": row["Password"]})
         return (account_details)
+
+    def system_options(self):
+        ...
 
 
     def quit_program(self):
