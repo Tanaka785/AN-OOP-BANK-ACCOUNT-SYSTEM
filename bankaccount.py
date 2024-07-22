@@ -70,8 +70,8 @@ class Account:
 
     def sign_up(self):
         user_fullname = self.get_user_fullname()
-        user_phone_number = self.get_user_phone_number()
-        user_id_number = self.get_user_id_number()
+        user_phone_number = self.get_user_phone_number("Phone Number")
+        user_id_number = self.get_user_id_number("Id Number")
         account_to_create = self.get_account_to_create()
         self.save_sign_up_details(
             user_fullname,
@@ -102,9 +102,9 @@ class Account:
             self.print_null_value_error()
 
 
-    def get_user_phone_number(self):
+    def get_user_phone_number(self, phone_number):
         while True:
-            user_phone_number = input("Phone Number: ")
+            user_phone_number = input(f"{phone_number}: ")
             if self.validate_user_phone_number(user_phone_number):
                 return (user_phone_number)
         
@@ -120,9 +120,9 @@ class Account:
             self.print_null_value_error()
 
             
-    def get_user_id_number(self):
+    def get_user_id_number(self, id_number):
         while True:
-            user_id_number = input("ID Number: ").strip()
+            user_id_number = input(f"{id_number}: ").strip()
             if self.validate_user_id_number(user_id_number):
                 return user_id_number
 
@@ -181,7 +181,9 @@ class Account:
 
         
     def sign_in(self):
-        ...
+       account_number = self.get_user_phone_number("Account Number")
+       password = self.get_user_id_number("Password")
+
 
     def quit_program(self):
         sys.exit("Goodbye👋")
