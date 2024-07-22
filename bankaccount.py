@@ -89,7 +89,7 @@ class Account:
         print(f"You have successfully created a {account_to_create} \n")
         print("->Your Phone Number Is Your Account Number")
         print(f"->Your Id-Number Is Your Password \n")
-        self.system_options()
+        self.inside_system_options()
 
 
     def get_user_fullname(self):
