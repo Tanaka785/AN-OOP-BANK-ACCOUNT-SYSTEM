@@ -102,37 +102,37 @@ class Account:
             self.print_null_value_error()
 
 
-    def get_user_phone_number(self, phone_number):
+    def get_user_phone_number(self, phone_number_or_account_number):
         while True:
-            user_phone_number = input(f"{phone_number}: ")
-            if self.validate_user_phone_number(user_phone_number):
+            user_phone_number = input(f"{phone_number_or_account_number}: ")
+            if self.validate_user_phone_number(user_phone_number, phone_number_or_account_number):
                 return (user_phone_number)
         
 
-    def validate_user_phone_number(self, user_phone_number):
+    def validate_user_phone_number(self, user_phone_number, phone_number_or_account_number):
         if user_phone_number:
             if re.search(r"^(\d{10})$", user_phone_number):
                 return True
             else:
-                print("Please Enter A Valid Phone Number!")
+                print(f"Please Enter A Valid {phone_number_or_account_number}!")
                 return False 
         else:
             self.print_null_value_error()
 
             
-    def get_user_id_number(self, id_number):
+    def get_user_id_number(self, id_number_or_password):
         while True:
-            user_id_number = input(f"{id_number}: ").strip()
-            if self.validate_user_id_number(user_id_number):
+            user_id_number = input(f"{id_number_or_password}: ").strip()
+            if self.validate_user_id_number(user_id_number, id_number_or_password):
                 return user_id_number
 
 
-    def validate_user_id_number(self, user_id_number):
+    def validate_user_id_number(self, user_id_number, id_number_or_password):
         if user_id_number:
             if re.search(r"^(\d{2})-(\d{7})([A-Z]{1})(\d{2})$", user_id_number):
                 return True 
             else:
-                print("Please Enter A Valid Id-Number!")
+                print(f"Please Enter A Valid {id_number_or_password}!")
                 return False 
         else:
             self.print_null_value_error()
