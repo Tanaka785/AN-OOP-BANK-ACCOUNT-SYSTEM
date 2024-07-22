@@ -48,7 +48,9 @@ class Account:
             signing_option = input("CHOOSE OPTION: ").strip()
             if (self.validate_chosen_option(signing_option, self.signing_in_or_up_options)):
                 return (signing_option)
-    
+            else:
+                self.sign_up_or_sign_in()
+
 
     def validate(self, signing_option, options):
         if (signing_option):
@@ -72,7 +74,7 @@ class Account:
         if self.validate(signing_option, options):
             return True
         else:
-            self.sign_up_or_sign_in()
+            return False
 
 
     def sign_up(self):
