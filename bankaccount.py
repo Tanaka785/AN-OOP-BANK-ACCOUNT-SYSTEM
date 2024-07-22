@@ -27,7 +27,7 @@ class Account:
 
     def sign_up_or_sign_in(self):
         self.print_options(self.signing_in_or_up_options)
-        signing_option = int(self.get_signing_in_or_up_option())
+        signing_option = int(self.get_option())
         if (signing_option) == 1:
             self.sign_up()
         elif (signing_option) == 2:
@@ -43,14 +43,14 @@ class Account:
         print()
 
 
-    def get_signing_in_or_up_option(self):
+    def get_option(self):
         while True:
             signing_option = input("CHOOSE OPTION: ").strip()
-            if (self.validate_sign_up_or_in_option(signing_option, self.signing_in_or_up_options)):
+            if (self.validate_chosen_option(signing_option, self.signing_in_or_up_options)):
                 return (signing_option)
     
 
-    def validate_options(self, signing_option, options):
+    def validate(self, signing_option, options):
         if (signing_option):
             try:
                 signing_option = int(signing_option)
@@ -68,8 +68,8 @@ class Account:
             return False 
 
 
-    def validate_sign_up_or_in_option(self, signing_option, options):
-        if self.validate_options(signing_option, options):
+    def validate_chosen_option(self, signing_option, options):
+        if self.validate(signing_option, options):
             return True
         else:
             self.sign_up_or_sign_in()
@@ -156,7 +156,7 @@ class Account:
         
 
     def validate_account_to_create(self, account_to_create, options):
-        if self.validate_options(account_to_create, options):
+        if self.validate(account_to_create, options):
             return True
         else:
             self.get_account_to_create()
@@ -194,7 +194,7 @@ class Account:
        account_details = self.get_account_details()
        if self.compare_sign_in_details(account_number, password, account_details):
            print("Sign In Successful🤩")
-           self.system_options()
+           self.inside_system_options()
        else:
            print("Account Details Provided Are Invalid! Try Again...")
            self.sign_in()
@@ -216,8 +216,21 @@ class Account:
                 account_details.append({"Account Number": row["Account Number"], "Password": row["Password"]})
         return (account_details)
 
-    def system_options(self):
-        ...
+    def inside_system_options(self):
+        self.print_options(self.system_options)
+        system_option = int(self.get_option())
+        if (system_option) == 1:
+            self.deposit_money()
+        elif (system_option) == 2:
+            self.withdraw_money()
+        elif (system_option) == 3:
+            self.check_account_balances()
+        elif (system_option) == 4:
+            self.transfer_money_between_accounts()
+        elif (system_option) == 5:
+            self.generate_account_statements()
+        else:
+            self.quit_program()
 
 
     def quit_program(self):
