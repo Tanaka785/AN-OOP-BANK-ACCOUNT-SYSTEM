@@ -79,7 +79,7 @@ class Account:
             user_id_number,
             account_to_create,
         )
-        print(f"You have successfully created a {account_to_create} account \n")
+        print(f"You have successfully created a {account_to_create} \n")
         print("->Your Phone Number Is Your Account Number")
         print("->Your Id-Number Is Your Password")
 
