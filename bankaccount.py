@@ -22,6 +22,7 @@ class Account:
             3: "Check Account Balances",
             4: "Transfer Money between Accounts",
             5: "Generate Account statements",
+            6: "Quit",
         }
 
 
@@ -231,10 +232,13 @@ class Account:
             self.transfer_money_between_accounts()
         elif (system_option) == 5:
             self.generate_account_statements()
+        elif (system_option) == 6:
+            self.quit_program()
         else:
             self.quit_program()
 
-
+    def deposit_money(self):
+        ...
     def quit_program(self):
         sys.exit("Goodbye👋")
 
