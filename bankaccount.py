@@ -186,6 +186,7 @@ class Account:
        account_details = self.get_account_details()
        if self.compare_sign_in_details(account_number, password, account_details):
            print("Sign In Successful🤩")
+           self.particular_account()
        else:
            print("Account Details Provided Are Invalid! Try Again...")
            self.sign_in()
@@ -208,6 +209,15 @@ class Account:
         return (account_details)
 
 
+    def particular_account(self):
+        account_option:int = self.get_account()
+        if (account_option) == 1:
+            savings = Savings_Account()
+        elif (account_option) == 2:
+            checkings.account_options()
+        elif (account_option) == 3:
+            credit.account_options()
+            
 
     def quit_program(self):
         sys.exit("Goodbye👋")
@@ -216,15 +226,57 @@ class Account:
 class Savings_Account(Account):
     def __init__(self):
         super().__init__()
+        self.inside_account_options = {
+            1: "Deposit Money",
+            2: "Withdraw Money",
+            3: "Transfer Funds",
+            4: "Check Balance",
+            5: "View Interest Earned",
+            6: "Generate Statement",
+            7: "Set Savings Goals",
+            8: "Set Up Alerts",
+            9: "Update Account Information",
+            10: "Quit",
+            }
+        self.account_options()
+
+
+    def account_options(self):
+        print("Yes")
 
 
 class Checkings_Account(Account):
     def __init__(self):
         super().__init__()
-        
+        self.inside_account_options = {
+            1: "Deposit Money",
+            2: "Withdraw Money",
+            3: "Check balance",
+            4: "Pay Bill",
+            5: "Transfer Funds",
+            6: "Generate Account Statement",
+            6: "Quit",
+        }
+
+
+    def account_options(self):
+        account_option = self.get_account()
+
 
 class Credit_Account(Account):
-    ...
+   def __init__(self):
+        super().__init__()
+        self.inside_account_options = {
+            1: "Make Payment",
+            2: "Check balance",
+            3: "Check Credit Limit",
+            4: "Request Credit Limit Increase",
+            5: "Generate Account Statement",
+        }
+   
+
+   def account_options(self):
+        ...
 
 
 account = Account()
