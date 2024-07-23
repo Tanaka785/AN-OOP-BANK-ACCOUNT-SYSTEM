@@ -6,8 +6,8 @@ class Account:
     def __init__(self):
         self.balance = 0
         self.signing_in_or_up_options = {
-            1: "Sing Up",
-            2: "Sign In",
+            1: "Create Bank Account",
+            2: "Access Account",
             3: "Exit",
         }
         self.bank_accounts = {
@@ -208,6 +208,7 @@ class Account:
                 account_details.append({"Account Number": row["Account Number"], "Password": row["Password"]})
         return (account_details)
 
+
     def inside_system_options(self):
         self.print_options(self.system_options)
         system_option = int(self.get_option(self.system_options))
@@ -226,8 +227,6 @@ class Account:
         else:
             self.quit_program()
 
-    def deposit_money(self):
-       account_option = self.get()
 
     def quit_program(self):
         sys.exit("Goodbye👋")
@@ -241,7 +240,7 @@ class Savings_Account(Account):
 class Checkings_Account(Account):
     def __init__(self):
         super().__init__()
-
+        
 
 class Credit_Account(Account):
     ...
@@ -249,3 +248,4 @@ class Credit_Account(Account):
 
 account = Account()
 account.sign_up_or_sign_in()
+credit = Credit_Account()
