@@ -88,7 +88,8 @@ class Account:
             print(f"You have successfully created a {account_option} \n")
             print("->Your Phone Number Is Your Account Number")
             print(f"->Your Id-Number Is Your Password \n")
-
+            self.sign_up_or_sign_in()
+            
 
     def get_user_fullname(self):
         while True:
