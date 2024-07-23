@@ -242,20 +242,24 @@ class Savings_Account(Account):
 
 
     def account_options(self):
-        print("Yes")
+        ...
 
 
 class Checkings_Account(Account):
     def __init__(self):
         super().__init__()
         self.inside_account_options = {
-            1: "Deposit Money",
-            2: "Withdraw Money",
-            3: "Check balance",
-            4: "Pay Bill",
+            1: "Deposit Funds",
+            2: "Withdraw Funds", 
+            3: "Pay Bills", 
+            4: "Withdraw Funds", 
             5: "Transfer Funds",
-            6: "Generate Account Statement",
-            6: "Quit",
+            6: "Check Balance", 
+            7: "Set Up Direct Deposit",
+            8: "Update Account Information",
+            9: "Use My Debit Card",
+            10: "Quit",
+
         }
 
 
