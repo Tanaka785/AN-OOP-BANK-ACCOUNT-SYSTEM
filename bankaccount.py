@@ -53,15 +53,15 @@ class Account:
                 self.print_options(options)
 
 
-    def validate_option(self, signing_option, options):
-        if (signing_option):
+    def validate_option(self, provided_option, options):
+        if (provided_option):
             try:
-                signing_option = int(signing_option)
+                provided_option = int(provided_option)
             except ValueError:
                 print("Please Enter An Integer Value For The Option!")
                 return False 
             else:
-                if (signing_option) in (options):
+                if (provided_option) in (options):
                     return True
                 else:
                     print("Please Choose An Option that Is Among The Provided Options!")
@@ -75,17 +75,20 @@ class Account:
         user_fullname = self.get_user_fullname()
         user_phone_number = self.get_user_phone_number("Phone Number")
         user_id_number = self.get_user_id_number("Id Number")
-        account_to_create = self.get_account_to_create()
-        self.save_sign_up_details(
-            user_fullname,
-            user_phone_number,
-            user_id_number,
-            account_to_create,
-        )
-        print(f"You have successfully created a {account_to_create} \n")
-        print("->Your Phone Number Is Your Account Number")
-        print(f"->Your Id-Number Is Your Password \n")
-        self.inside_system_options()
+        account_option = self.get_account()
+        if (account_option.lower()) == "quit":
+            self.quit_program()
+        else:
+            self.save_sign_up_details(
+                user_fullname,
+                user_phone_number,
+                user_id_number,
+                account_option,
+            )
+            print(f"You have successfully created a {account_option} \n")
+            print("->Your Phone Number Is Your Account Number")
+            print(f"->Your Id-Number Is Your Password \n")
+            self.inside_system_options()
 
 
     def get_user_fullname(self):
@@ -142,21 +145,14 @@ class Account:
             self.print_null_value_error()
 
 
-    def get_account_to_create(self):
+    def get_account(self):
         while True:
             self.print_options(self.bank_accounts)
-            account_to_create:int = input("Which Account Do You Want To Create: ")
-            if self.validate_account_option(account_to_create, self.bank_accounts):
-                account_to_create = int(account_to_create)
-                return (self.bank_accounts[account_to_create])
+            account_option:int = input("Choose Account: ")
+            if self.validate_option(account_option, self.bank_accounts):
+                account_option = int(account_option)
+                return (self.bank_accounts[account_option])
         
-
-    def validate_account_option(self, account_to_create, options):
-        if self.validate(account_to_create, options):
-            return True
-        else:
-            self.get_account_to_create()
-
 
     def save_sign_up_details(self, fullname, phone_number, id_number, account_name):
         with open("bank_accounts_details.csv", "a") as file:
@@ -231,13 +227,7 @@ class Account:
             self.quit_program()
 
     def deposit_money(self):
-        depositing_account = self.get_depositing_account()
-
-
-    def get_depositing_account(self):
-        while True:
-            self.print_options(self.bank_accounts)
-            depositing_account:int = input("Account to deposit in: ").strip()
+       account_option = self.get()
 
     def quit_program(self):
         sys.exit("Goodbye👋")
