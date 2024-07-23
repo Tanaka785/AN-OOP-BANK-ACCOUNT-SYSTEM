@@ -27,7 +27,7 @@ class Account:
 
     def sign_up_or_sign_in(self):
         self.print_options(self.signing_in_or_up_options)
-        signing_option = int(self.get_option())
+        signing_option = int(self.get_option(self.signing_in_or_up_options))
         if (signing_option) == 1:
             self.sign_up()
         elif (signing_option) == 2:
@@ -43,13 +43,13 @@ class Account:
         print()
 
 
-    def get_option(self):
+    def get_option(self, options):
         while True:
             signing_option = input("CHOOSE OPTION: ").strip()
-            if (self.validate_chosen_option(signing_option, self.signing_in_or_up_options)):
+            if (self.validate_chosen_option(signing_option, options)):
                 return (signing_option)
             else:
-                self.sign_up_or_sign_in()
+                self.print_options(options)
 
 
     def validate(self, signing_option, options):
@@ -220,7 +220,7 @@ class Account:
 
     def inside_system_options(self):
         self.print_options(self.system_options)
-        system_option = int(self.get_option())
+        system_option = int(self.get_option(self.system_options))
         if (system_option) == 1:
             self.deposit_money()
         elif (system_option) == 2:
