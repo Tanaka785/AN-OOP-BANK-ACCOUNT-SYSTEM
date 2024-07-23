@@ -88,7 +88,6 @@ class Account:
             print(f"You have successfully created a {account_option} \n")
             print("->Your Phone Number Is Your Account Number")
             print(f"->Your Id-Number Is Your Password \n")
-            self.inside_system_options()
 
 
     def get_user_fullname(self):
@@ -186,7 +185,6 @@ class Account:
        account_details = self.get_account_details()
        if self.compare_sign_in_details(account_number, password, account_details):
            print("Sign In Successful🤩")
-           self.inside_system_options()
        else:
            print("Account Details Provided Are Invalid! Try Again...")
            self.sign_in()
@@ -209,24 +207,6 @@ class Account:
         return (account_details)
 
 
-    def inside_system_options(self):
-        self.print_options(self.system_options)
-        system_option = int(self.get_option(self.system_options))
-        if (system_option) == 1:
-            self.deposit_money()
-        elif (system_option) == 2:
-            self.withdraw_money()
-        elif (system_option) == 3:
-            self.check_account_balances()
-        elif (system_option) == 4:
-            self.transfer_money_between_accounts()
-        elif (system_option) == 5:
-            self.generate_account_statements()
-        elif (system_option) == 6:
-            self.quit_program()
-        else:
-            self.quit_program()
-
 
     def quit_program(self):
         sys.exit("Goodbye👋")
@@ -248,4 +228,6 @@ class Credit_Account(Account):
 
 account = Account()
 account.sign_up_or_sign_in()
+savings = Savings_Account()
 credit = Credit_Account()
+checkings = Checkings_Account()
