@@ -79,6 +79,7 @@ class Account:
         if (account_option.lower()) == "quit":
             self.quit_program()
         else:
+            
             self.save_sign_up_details(
                 user_fullname,
                 user_phone_number,
@@ -184,7 +185,7 @@ class Account:
        account_number = self.get_user_phone_number("Account Number")
        password = self.get_user_id_number("Password")
        account_details = self.get_account_details()
-       if self.compare_sign_in_details(account_number, password, account_details):
+       if self.compare_provided_details(account_number, password, account_details):
            print("Sign In Successful🤩")
            self.particular_account()
        else:
@@ -192,7 +193,7 @@ class Account:
            self.sign_in()
 
 
-    def compare_sign_in_details(self, account_number, password, account_details):
+    def compare_provided_details(self, account_number, password, account_details):
         for account in account_details:
             if (account["Account Number"] == account_number and account["Password"] == password):
                 return True
@@ -242,8 +243,10 @@ class Savings_Account(Account):
 
 
     def account_options(self):
-        ...
-
+        self.print_options(self.inside_account_options)
+        option:int = self.get_option(self.inside_account_options)
+        if option == 1:
+            ...
 
 class Checkings_Account(Account):
     def __init__(self):
