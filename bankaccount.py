@@ -264,7 +264,7 @@ class Checkings_Account(Account):
 
 
     def account_options(self):
-        account_option = self.get_account()
+        ...
 
 
 class Credit_Account(Account):
@@ -276,6 +276,8 @@ class Credit_Account(Account):
             3: "Check Credit Limit",
             4: "Request Credit Limit Increase",
             5: "Generate Account Statement",
+            6: "Update Account Information",
+            7: "Quit",
         }
    
 
