@@ -47,13 +47,13 @@ class Account:
     def get_option(self, options):
         while True:
             signing_option = input("CHOOSE OPTION: ").strip()
-            if (self.validate_chosen_option(signing_option, options)):
+            if (self.validate_option(signing_option, options)):
                 return (signing_option)
             else:
                 self.print_options(options)
 
 
-    def validate(self, signing_option, options):
+    def validate_option(self, signing_option, options):
         if (signing_option):
             try:
                 signing_option = int(signing_option)
@@ -69,13 +69,6 @@ class Account:
         else:
             self.print_null_value_error()
             return False 
-
-
-    def validate_chosen_option(self, signing_option, options):
-        if self.validate(signing_option, options):
-            return True
-        else:
-            return False
 
 
     def sign_up(self):
@@ -153,12 +146,12 @@ class Account:
         while True:
             self.print_options(self.bank_accounts)
             account_to_create:int = input("Which Account Do You Want To Create: ")
-            if self.validate_account_to_create(account_to_create, self.bank_accounts):
+            if self.validate_account_option(account_to_create, self.bank_accounts):
                 account_to_create = int(account_to_create)
                 return (self.bank_accounts[account_to_create])
         
 
-    def validate_account_to_create(self, account_to_create, options):
+    def validate_account_option(self, account_to_create, options):
         if self.validate(account_to_create, options):
             return True
         else:
@@ -238,7 +231,14 @@ class Account:
             self.quit_program()
 
     def deposit_money(self):
-        ...
+        depositing_account = self.get_depositing_account()
+
+
+    def get_depositing_account(self):
+        while True:
+            self.print_options(self.bank_accounts)
+            depositing_account:int = input("Account to deposit in: ").strip()
+
     def quit_program(self):
         sys.exit("Goodbye👋")
 
