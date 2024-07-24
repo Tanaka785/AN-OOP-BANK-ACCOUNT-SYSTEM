@@ -75,21 +75,25 @@ class Account:
         user_fullname = self.get_user_fullname()
         user_phone_number = self.get_user_phone_number("Phone Number")
         user_id_number = self.get_user_id_number("Id Number")
-        account_option = self.get_account()
-        if (account_option.lower()) == "quit":
+        account_name = self.get_account()
+        if (account_name.lower()) == "quit":
             self.quit_program()
         else:
-            
-            self.save_sign_up_details(
-                user_fullname,
-                user_phone_number,
-                user_id_number,
-                account_option,
-            )
-            print(f"You have successfully created a {account_option} \n")
-            print("->Your Phone Number Is Your Account Number")
-            print(f"->Your Id-Number Is Your Password \n")
-            self.sign_up_or_sign_in()
+            account_details = self.get_account_details()
+            if self.compare_provided_details(user_phone_number, user_id_number, account_details):
+                print("Account Details Already Exists! Try Accessing Account Instead.")
+                self.sign_up_or_sign_in()
+            else:
+                self.save_sign_up_details(
+                    user_fullname,
+                    user_phone_number,
+                    user_id_number,
+                    account_name,
+                )
+                print(f"You have successfully created a {account_name} \n")
+                print("->Your Phone Number Is Your Account Number")
+                print(f"->Your Id-Number Is Your Password \n")
+                self.sign_up_or_sign_in()
             
 
     def get_user_fullname(self):
@@ -195,7 +199,8 @@ class Account:
 
     def compare_provided_details(self, account_number, password, account_details):
         for account in account_details:
-            if (account["Account Number"] == account_number and account["Password"] == password):
+            account_name = account["Account Type"]
+            if (account["Account Number"] == account_number and account["Password"] == password and account["Account Type"] == account_name):
                 return True
             else:
                 return False
@@ -206,7 +211,7 @@ class Account:
         with open("bank_accounts.csv") as file:
             reader = csv.DictReader(file)
             for row in reader:
-                account_details.append({"Account Number": row["Account Number"], "Password": row["Password"]})
+                account_details.append({"Account Number": row["Account Number"], "Password": row["Password"], "Account Type": row["Account Type"]})
         return (account_details)
 
 
