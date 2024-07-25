@@ -225,6 +225,42 @@ class Account:
             credit.account_options()
             
 
+    def deposit_money(self):
+        amount = self.get_amount()
+        self.balance += amount
+        self.save_transaction_details()
+
+
+    def get_amount(self):
+        while True:
+            amount = input("Enter Amount: ").strip()
+            if self.validate_amount(amount):
+                return (float(amount))
+            else:
+                pass 
+    
+
+    def validate_amount(self, amount):
+        if amount:
+            try:
+                amount = float(amount)
+            except ValueError:
+                print("Please Enter A Digit Value!")
+                return False
+            else:
+                if amount < 5:
+                    print("No Deposit Amount Less Than $5 Allowed!")
+                    return False
+                else:
+                    return True
+        else:
+            self.print_null_value_error()
+
+
+    def save_transaction_details(account_number, transaction, amount, current_date):
+        ...
+
+
     def quit_program(self):
         sys.exit("Goodbye👋")
 
@@ -251,7 +287,8 @@ class Savings_Account(Account):
         self.print_options(self.inside_account_options)
         option:int = self.get_option(self.inside_account_options)
         if option == 1:
-            ...
+            self.deposit_money()
+            
 
 class Checkings_Account(Account):
     def __init__(self):
